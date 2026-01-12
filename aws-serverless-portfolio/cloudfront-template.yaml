@@ -1,6 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: S3 Template for aws pricing
-
+Description: CloudFront Template for aws portfolio
 # ------------------------------------------------------------
 # Parameters
 # ------------------------------------------------------------
