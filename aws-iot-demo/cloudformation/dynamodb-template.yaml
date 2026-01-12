@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: DynamoDB Template for AWSIoT-demo
+
+# ------------------------------------------------------------
+# Parameters
+# ------------------------------------------------------------
+Parameters:
+  ProjectName:
+    Type: String
+    Default: AWSIoT-demo
+
+  Environment:
+    Type: String
+    Default: prod
+    AllowedValues:
+      - dev
+      - prod
+
+# ------------------------------------------------------------
+# Resources
+# ------------------------------------------------------------
+Resources:
+  DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${ProjectName}-${Environment}-sensor-data"
+      BillingMode: PAY_PER_REQUEST
+
+      AttributeDefinitions:
+        - AttributeName: deviceId
+          AttributeType: S
+        - AttributeName: timestamp
+          AttributeType: S
+
+      KeySchema:
+        - AttributeName: deviceId
+          KeyType: HASH
+        - AttributeName: timestamp
+          KeyType: RANGE
+
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+        
+      Tags:
+        - Key: Name
+          Value: !Sub "${ProjectName}-${Environment}"
+        - Key: Environment
+          Value: !Ref Environment
+
+
+# ------------------------------------------------------------
+# Outputs
+# ------------------------------------------------------------
+Outputs:
+  DynamoDBTableName:
+    Value: !Ref DynamoDBTable
+    Export:
+      Name: !Sub "${ProjectName}-${Environment}-DynamoDBTable"
+
+  DynamoDBTableArn:
+    Value: !GetAtt DynamoDBTable.Arn
+    Export:
+      Name: !Sub "${ProjectName}-${Environment}-sensor-data-arn"
