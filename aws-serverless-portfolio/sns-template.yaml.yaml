@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: SNS Topic for contact notification
+
+# ------------------------------------------------------------
+# Parameters
+# ------------------------------------------------------------
+Parameters:
+  ProjectName:
+    Type: String
+    Default: portfolio-suzuki
+      
+  SNSEndpointEmail:
+    Type: String
+    Description: Email for static hosting
+
+  Environment:
+    Type: String
+    Default: prod
+    AllowedValues:
+      - dev
+      - prod
+
+# ------------------------------------------------------------
+# Resources
+# ------------------------------------------------------------
+Resources:
+  ContactNotificationTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub "${ProjectName}-${Environment}-contact-notification"
+      Tags:
+        - Key: Name
+          Value: !Sub "${ProjectName}-${Environment}"
+        - Key: Environment
+          Value: !Ref Environment
+
+  ContactNotificationSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      TopicArn: !Ref ContactNotificationTopic
+      Protocol: email
+      Endpoint: !Ref SNSEndpointEmail
+
+# ------------------------------------------------------------
+# Outputs
+# ------------------------------------------------------------
+Outputs:
+  ContactNotificationTopic:
+    Value: !Ref ContactNotificationTopic
+    Export:
+      Name: !Sub "${ProjectName}-${Environment}-contact-notification"
+
