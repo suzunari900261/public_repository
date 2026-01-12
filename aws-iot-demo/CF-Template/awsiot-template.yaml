@@ -1,0 +1,105 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: AWSIoT Template for AWSIoT-demo
+
+# ------------------------------------------------------------
+# Parameters
+# ------------------------------------------------------------
+Parameters:
+  ProjectName:
+    Type: String
+    Default: AWSIoT-demo
+
+  Environment:
+    Type: String
+    Default: prod
+    AllowedValues:
+      - dev
+      - prod
+
+  ThingName:
+    Type: String
+    Description: Name of the IoT Thing for Device
+
+# ------------------------------------------------------------
+# Resources
+# ------------------------------------------------------------
+Resources:
+  IoTThing:
+    Type: AWS::IoT::Thing
+    Properties:
+      ThingName: !Ref ThingName
+      AttributePayload:
+        Attributes:
+          purpose: demo
+
+  IoTPolicy:
+    Type: AWS::IoT::Policy
+    Properties:
+      PolicyName: !Sub "${ProjectName}-${Environment}-policy"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: "iot:Publish"
+            Resource:
+              - !Sub "arn:aws:iot:${AWS::Region}:*:topic/sensors/temperature/*"
+
+          - Effect: Allow
+            Action: "iot:Subscribe"
+            Resource:
+              - !Sub "arn:aws:iot:${AWS::Region}:*:topicfilter/test/subscribe/*"
+
+          - Effect: Allow
+            Action: "iot:Receive"
+            Resource:
+              - !Sub "arn:aws:iot:${AWS::Region}:*:topic/test/subscribe/*"
+
+          - Effect: Allow
+            Action: "iot:Connect"
+            Resource:
+              - !Sub "arn:aws:iot:${AWS::Region}:*:client/*"
+
+  IoTRule:
+    Type: AWS::IoT::TopicRule
+    DeletionPolicy: Retain
+    Properties:
+      RuleName: AWSIoT_demo_prod_DynamoDB_DataSave
+      TopicRulePayload:
+        RuleDisabled: false
+        AwsIotSqlVersion: "2016-03-23"
+        Sql: |
+          SELECT *
+          FROM 'sensors/temperature/#'
+        Actions:
+          - DynamoDBv2:
+              RoleArn: !ImportValue AWSIoT-demo-prod-iot-rule-role-Arn
+              PutItem:
+                TableName: !ImportValue AWSIoT-demo-prod-DynamoDBTable
+
+  IoTRule02:
+    Type: AWS::IoT::TopicRule
+    DeletionPolicy: Retain
+    Properties:
+      RuleName: AWSIoT_demo_prod_Lambda_Alerm
+      TopicRulePayload:
+        RuleDisabled: false
+        AwsIotSqlVersion: "2016-03-23"
+        Sql: |
+          SELECT *
+          FROM 'sensors/temperature/#'
+          WHERE status = 'alert'
+        Actions:
+          - Lambda:
+              FunctionArn: !ImportValue AWSIoT-demo-prod-Lambda
+
+# ------------------------------------------------------------
+# Outputs
+# ------------------------------------------------------------
+Outputs:
+  IoTThingName:
+    Value: !Ref IoTThing
+
+  IoTRule02Arn:
+    Value: !Sub arn:aws:iot:${AWS::Region}:${AWS::AccountId}:rule/AWSIoT_demo_prod_Lambda_Alerm
+    Export:
+      Name: !Sub "${ProjectName}-${Environment}-AWSIoT-Lambda-rule"
