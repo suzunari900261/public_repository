@@ -76,17 +76,21 @@ CloudFront を中心に、静的コンテンツと API を分離した
 
 \### 📁 関連ディレクトリ
 
-serverless-web/
+saws-serverless-portfolio/
 
-├── cloudformation/
+├─apigateway-template.yaml
 
-│ └── serverless-web.yaml
+├─cloudfront-template.yaml
 
-├── lambda/
+├─iam-template.yaml
 
-│ └── contact\_handler.py
+├─lambda-template.yaml
 
+├─route53-template.yaml
 
+├─s3-template.yaml
+
+└─sns-template.yaml.yaml
 
 
 
@@ -144,11 +148,23 @@ aws-iot-demo/
 
 ├── cloudformation/
 
-│ └── iot-demo.yaml
+│ ├─iot-demo.yaml
 
-├── device/
+│ ├─awsiot-template.yaml
 
-│ └── iot\_device\_simulator.py
+│ ├─cloudwatch-template.yaml
+
+│ ├─dynamodb-template.yaml
+
+│ ├─iam-template.yaml
+
+│ ├─lambda-template.yaml
+
+│ └─vpc\&ec2-template.yaml
+
+└── device/
+
+&nbsp;  └─ sensor\_simulator.py
 
 
 
