@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: SNS Topic for contact notification
+Description: SNS Template for aws portfolio
 
 # ------------------------------------------------------------
 # Parameters
