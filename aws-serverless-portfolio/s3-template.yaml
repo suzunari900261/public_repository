@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: S3 Template for aws portfolio
+
+# ------------------------------------------------------------
+# Parameters
+# ------------------------------------------------------------
+Parameters:
+  ProjectName:
+    Type: String
+    Default: portfolio-suzuki
+    Description: Project name for tagging and resource naming
+
+  Environment:
+    Type: String
+    Default: prod
+    AllowedValues:
+      - dev
+      - prod
+
+  S3BucketName:
+    Type: String
+    Description: S3 bucket name for static hosting
+
+# ------------------------------------------------------------
+# Resources
+# ------------------------------------------------------------
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Ref S3BucketName
+      Tags:
+        - Key: Name
+          Value: !Sub "${ProjectName}-${Environment}"
+        - Key: Environment
+          Value: !Ref Environment
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  OACBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3Bucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowCloudFrontRead
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub "${S3Bucket.Arn}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn:
+                  Fn::Sub:
+                    - "arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistributionId}"
+                    - { DistributionId: !ImportValue "${ProjectName}-CloudFront" }
+
+# ------------------------------------------------------------
+# Outputs
+# ------------------------------------------------------------
+Outputs:
+  S3Bucket:
+    Value: !GetAtt S3Bucket.RegionalDomainName
+    Export:
+      Name: !Sub "${ProjectName}-S3"
