@@ -88,7 +88,7 @@ aws-serverless-portfolio/
 └─ lambda/
     └─ lambda_function.py
 
----
+```
 
 
 
