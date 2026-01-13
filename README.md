@@ -62,7 +62,7 @@ CloudFront を中心に、静的コンテンツと API を分離した
 
 ## 🏗️ アーキテクチャ構成図
 
-<img src="docs/architecture/aws-iot-architecture.png" width="900">
+<img src="docs/architecture/serverless-architecture.png" width="900">
 
 
 
