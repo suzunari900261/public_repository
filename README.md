@@ -60,6 +60,10 @@ CloudFront を中心に、静的コンテンツと API を分離した
 
 \- CloudFormation：全リソースを IaC 管理
 
+## 🏗️ アーキテクチャ構成図
+
+![Serverless Architecture](docs/architecture/serverless-architecture.png)
+
 
 
 \### 🧠 設計ポイント
