@@ -73,7 +73,7 @@ CloudFront を中心に、静的コンテンツと API を分離した
 \- CloudFormation により再現性・保守性を重視
 
 
-
+```markdown
 ### 📁 関連ディレクトリ
 
 ```text
@@ -129,9 +129,9 @@ IoT デバイスから送信されるデータの保存と、
 
 \- 温度・CO2・バッテリー残量などのダミーデータを生成
 
-\- 閾値超過時に status を `Alert` に変更
+\- 閾値超過時に status を `alert` に変更
 
-\- Alert データのみ Lambda を起動し、CloudWatch Metrics へ送信
+\- alert データのみ Lambda を起動し、CloudWatch Metrics へ送信
 
 \- CloudWatch Dashboard で異常発生状況を可視化
 
