@@ -74,25 +74,17 @@ CloudFront を中心に、静的コンテンツと API を分離した
 
 
 
-\### 📁 関連ディレクトリ
+### 📁 関連ディレクトリ
 
-saws-serverless-portfolio/
-
-├─apigateway-template.yaml
-
-├─cloudfront-template.yaml
-
-├─iam-template.yaml
-
-├─lambda-template.yaml
-
-├─route53-template.yaml
-
-├─s3-template.yaml
-
-└─sns-template.yaml.yaml
-
-
+```text
+aws-serverless-portfolio/
+├─ apigateway-template.yaml
+├─ cloudfront-template.yaml
+├─ iam-template.yaml
+├─ lambda-template.yaml
+├─ route53-template.yaml
+├─ s3-template.yaml
+└─ sns-template.yaml
 
 ---
 
@@ -142,33 +134,18 @@ IoT デバイスから送信されるデータの保存と、
 
 
 
-\### 📁 関連ディレクトリ
+### 📁 関連ディレクトリ
 
+```text
 aws-iot-demo/
-
-├── cloudformation/
-
-│ ├─iot-demo.yaml
-
-│ ├─awsiot-template.yaml
-
-│ ├─cloudwatch-template.yaml
-
-│ ├─dynamodb-template.yaml
-
-│ ├─iam-template.yaml
-
-│ ├─lambda-template.yaml
-
-│ └─vpc\&ec2-template.yaml
-
-└── device/
-
-&nbsp;  └─ sensor\_simulator.py
-
-
-
-
-
-
+├─ cloudformation/
+│  ├─ iot-demo.yaml
+│  ├─ awsiot-template.yaml
+│  ├─ cloudwatch-template.yaml
+│  ├─ dynamodb-template.yaml
+│  ├─ iam-template.yaml
+│  ├─ lambda-template.yaml
+│  └─ vpc-ec2-template.yaml
+└─ device/
+   └─ sensor_simulator.py
 
