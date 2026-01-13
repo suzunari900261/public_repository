@@ -73,7 +73,6 @@ CloudFront を中心に、静的コンテンツと API を分離した
 \- CloudFormation により再現性・保守性を重視
 
 
-```markdown
 ### 📁 関連ディレクトリ
 
 ```text
