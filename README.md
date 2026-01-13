@@ -68,7 +68,7 @@ CloudFront を中心に、静的コンテンツと API を分離した
 
 \### 🏗️ アーキテクチャ構成図
 
-<img src="docs/architecture/serverless-architecture.png">
+<img src="docs/architecture/serverless-architecture.png" style="width: 70%;">
 
 
 
