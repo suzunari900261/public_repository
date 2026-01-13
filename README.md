@@ -71,6 +71,8 @@ CloudFront を中心に、静的コンテンツと API を分離した
 <img src="docs/architecture/serverless-architecture.png" style="width: 70%;">
 
 
+---
+
 
 \## 🧠 設計ポイント
 
@@ -81,6 +83,9 @@ CloudFront を中心に、静的コンテンツと API を分離した
 \- ビルド不要な構成とし、構成をシンプルに維持
 
 \- CloudFormation により再現性・保守性を重視
+
+
+---
 
 
 ### 📁 関連ディレクトリ
@@ -111,6 +116,8 @@ IoT デバイスから送信されるデータの保存と、
 \*\*異常発生時の可視化\*\*を目的としています。
 
 
+---
+
 
 \### 🔧 構成概要
 
@@ -129,6 +136,8 @@ IoT デバイスから送信されるデータの保存と、
 \- CloudFormation：IoT 証明書を除く全リソースを管理
 
 
+---
+
 
 \### 🧠 デモ内容
 
@@ -141,6 +150,17 @@ IoT デバイスから送信されるデータの保存と、
 \- alert データのみ Lambda を起動し、CloudWatch Metrics へ送信
 
 \- CloudWatch Dashboard で異常発生状況を可視化
+
+---
+
+
+\### 🏗️ アーキテクチャ構成図
+
+<img src="docs/architecture/iotdemo-architecture.png" style="width: 70%;">
+
+
+---
+
 
 ### 📁 関連ディレクトリ
 
