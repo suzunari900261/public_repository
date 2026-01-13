@@ -78,13 +78,16 @@ CloudFront を中心に、静的コンテンツと API を分離した
 
 ```text
 aws-serverless-portfolio/
-├─ apigateway-template.yaml
-├─ cloudfront-template.yaml
-├─ iam-template.yaml
-├─ lambda-template.yaml
-├─ route53-template.yaml
-├─ s3-template.yaml
-└─ sns-template.yaml
+├─ cloudformation/
+│  ├─ apigateway-template.yaml
+│  ├─ cloudfront-template.yaml
+│  ├─ iam-template.yaml
+│  ├─ lambda-template.yaml
+│  ├─ route53-template.yaml
+│  ├─ s3-template.yaml
+│  └─ sns-template.yaml
+└─ lambda/
+    └─ lambda_function.py
 
 ---
 
@@ -146,6 +149,9 @@ aws-iot-demo/
 │  ├─ iam-template.yaml
 │  ├─ lambda-template.yaml
 │  └─ vpc-ec2-template.yaml
+├─ lambda/
+│  └─ lambda_function.py
 └─ device/
-   └─ sensor_simulator.py
+    └─ sensor_simulator.py
+
 
