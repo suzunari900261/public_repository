@@ -138,9 +138,15 @@ IoT デバイスから送信されるデータの保存と、
 
 ---
 
+\### 🏗️ アーキテクチャ構成図
 
-\### 🧠 デモ内容
+<img src="docs/architecture/iotdemo-architecture.png" style="width: 70%;">
 
+
+---
+
+
+\### 🧠 設計ポイント
 
 
 \- 温度・CO2・バッテリー残量などのダミーデータを生成
@@ -150,13 +156,6 @@ IoT デバイスから送信されるデータの保存と、
 \- alert データのみ Lambda を起動し、CloudWatch Metrics へ送信
 
 \- CloudWatch Dashboard で異常発生状況を可視化
-
----
-
-
-\### 🏗️ アーキテクチャ構成図
-
-<img src="docs/architecture/iotdemo-architecture.png" style="width: 70%;">
 
 
 ---
