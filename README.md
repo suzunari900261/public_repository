@@ -87,9 +87,7 @@ aws-serverless-portfolio/
 │  └─ sns-template.yaml
 └─ lambda/
     └─ lambda_function.py
-
 ```
-
 
 
 \## ② AWS IoT デモ（環境センサーデバイス模擬）
@@ -134,9 +132,6 @@ IoT デバイスから送信されるデータの保存と、
 
 \- CloudWatch Dashboard で異常発生状況を可視化
 
-
-
-```markdown
 ### 📁 関連ディレクトリ
 
 ```text
@@ -153,5 +148,6 @@ aws-iot-demo/
 │  └─ lambda_function.py
 └─ device/
     └─ sensor_simulator.py
+```
 
 
