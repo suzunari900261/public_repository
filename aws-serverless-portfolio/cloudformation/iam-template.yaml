@@ -1,0 +1,60 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: IAM Template for aws portfolio
+
+# ------------------------------------------------------------
+# Parameters
+# ------------------------------------------------------------
+Parameters:
+  ProjectName:
+    Type: String
+    Default: portfolio-suzuki
+
+  Environment:
+    Type: String
+    Default: prod
+    AllowedValues:
+      - dev
+      - prod
+
+# ------------------------------------------------------------
+# Resources
+# ------------------------------------------------------------
+Resources:
+  IAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${ProjectName}-${Environment}-lambda-sns-role"
+      Path: "/"
+      Tags:
+        - Key: Name
+          Value: !Sub "${ProjectName}-${Environment}-sns"
+        - Key: Environment
+          Value: !Ref Environment
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+      Policies:
+        - PolicyName: AllowSnsPublish
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - sns:Publish
+                Resource: !ImportValue portfolio-suzuki-prod-contact-notification
+
+# ------------------------------------------------------------
+# Outputs
+# ------------------------------------------------------------
+Outputs:
+  IAMRoleArn:
+    Value: !GetAtt IAMRole.Arn
+    Export:
+      Name: !Sub "${ProjectName}-${Environment}-lambda-sns-role"
