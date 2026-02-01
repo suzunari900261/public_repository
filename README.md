@@ -121,6 +121,7 @@ aws-serverless-portfolio/
     └─ lambda_function.py
 ```
 
+---
 
 \### ② AWS IoT デモ（環境センサーデバイス模擬）
 
