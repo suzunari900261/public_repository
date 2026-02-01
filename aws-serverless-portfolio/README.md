@@ -34,19 +34,23 @@ CloudFormation テンプレートを直接管理していた構成から、
 ## 🧩 ディレクトリ構成（例）
 
 ```text
-cdk/
+CDK/
 ├─ app.py                 # CDK アプリケーションのエントリポイント
-├─ stacks/
-│  ├─ frontend_stack.py   # CloudFront / S3 / ACM
-│  ├─ api_stack.py        # API Gateway / Lambda
-│  ├─ dns_stack.py        # Route53
-│  └─ notification_stack.py # SNS
-├─ constructs/
-│  ├─ cloudfront.py
-│  ├─ api.py
-│  └─ lambda_function.py
+├─ cdk.json               # Context / 設定値
+├─ requirements.txt       # CDK 実行用依存関係
+├─ requirements-dev.txt   # 開発・テスト用依存関係
 ├─ tests/
-│  └─ test_stacks.py
-├─ cdk.json
-├─ requirements.txt
-└─ README.md
+│  └─ unit/
+│      └─ test_cdk_python_stack.py  # CDK スタックのユニットテスト
+└─ cdk_python/
+    ├─ frontend_stack.py  # フロントエンドスタック(CloudFront / S3 / Route53)
+    ├─ backend_stack.py   # バックエンドスタック(API Gateway / Lambda / SNS)
+    └─ constructs/
+        ├─ cloudfront.py
+        ├─ s3_bucket.py
+        ├─ apigateway.py
+        ├─ lambda_function.py
+        ├─ sns_topic.py
+        └─ route53.py
+```
+
