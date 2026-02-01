@@ -73,11 +73,40 @@ CDK、CloudFront を中心に、静的コンテンツと API を分離した **�
 
 ---
 
-
 ### 📁 関連ディレクトリ
 
 ```text
 aws-serverless-portfolio/
+├─README.md
+└─ CDK/
+    ├─ app.py
+    ├─ cdk.json
+    ├─ requirements-dev.txt
+    ├─ requirements.txt
+    ├─ tests/
+    │   ├─__init__.py
+    │   └─unit/
+    │       ├─__init__.py
+    │       └─test_cdk_python_stack.py
+    └─ cdk_python/
+            ├─__init__.py
+            ├─backend_stack.py
+            ├─frontend_stack.py
+            └─constructs
+                ├─__init__.py
+                ├─apigateway.py
+                ├─cloudfront.py
+                ├─lambda_function.py
+                ├─route53.py
+                ├─s3_bucket.py
+                └─sns_topic.py
+
+```
+
+### 📁 関連ディレクトリ(旧構成:CloudFormationコード)
+
+```text
+(old)aws-serverless-portfolio/
 ├─ cloudformation/
 │  ├─ apigateway-template.yaml
 │  ├─ cloudfront-template.yaml
