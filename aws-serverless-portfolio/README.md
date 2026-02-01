@@ -77,7 +77,7 @@ CDK/
   CloudFormation Change Set を作成し、差分を可視化
 
 - Manual Approval  
-  影響確認後、人手で承認
+  人手で承認
 
 - Deploy（Change Set 実行）  
   承認後にスタックを更新
