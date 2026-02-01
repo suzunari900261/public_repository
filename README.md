@@ -35,6 +35,8 @@ https://portfolio-suzuki.com/
 CDK、CloudFront を中心に、静的コンテンツと API を分離した **サーバーレス構成** です。  
 インフラは IaC 化しており、変更を GitHub 起点で CI/CD により反映します。
 
+旧構成ではCloudFormationテンプレートを使用してのデプロイですが、現構成でCDK使用に変更しました。
+
 
 ---
 
