@@ -75,7 +75,7 @@ CDK、CloudFront を中心に、静的コンテンツと API を分離した **�
 
 ---
 
-### 📁 関連ディレクトリ
+### 📁 関連ディレクトリ(現構成:CDK_Pythonコード)
 
 ```text
 aws-serverless-portfolio/
