@@ -1,20 +1,14 @@
-\# AWS Portfolio (Serverless / IoT)
+# AWS Portfolio (Serverless / DevOps / IoT)
 
+AWS を中心とした **設計・構築（IaC）/ CI/CD / 運用観点** の検証・成果物をまとめたポートフォリオリポジトリです。  
+サーバーレス Web アプリケーション（本ポートフォリオサイト）と、AWS IoT デモシステムを掲載しています。
 
-
-AWS を中心としたクラウド技術の検証・成果物をまとめたポートフォリオリポジトリです。  
-
-本リポジトリでは、\*\*CloudFormation による IaC 管理\*\*を前提とした
-
-サーバーレス Web アプリケーションと AWS IoT デモシステムを公開しています。
-
-
+- 主軸：**IaC（CloudFormation / AWS CDK）**
+- デプロイ：**CI/CD（GitHub → CodePipeline/CodeBuild → CloudFormation）**
+- 運用：問い合わせ通知（SNS）などの運用要素を含む
 
 ▶ ポートフォリオサイト  
-
 https://portfolio-suzuki.com/
-
-
 
 ---
 
@@ -24,7 +18,7 @@ https://portfolio-suzuki.com/
 
 
 
-\- ① サーバーレス Web アプリケーション（本ポートフォリオサイト）
+\- ① サーバーレス Web アプリケーション（ポートフォリオサイト）
 
 \- ② AWS IoT デモ（環境センサーデバイス模擬）
 
@@ -38,11 +32,8 @@ https://portfolio-suzuki.com/
 
 
 
-本ポートフォリオサイトの AWS 構成です。  
-
-CloudFront を中心に、静的コンテンツと API を分離した
-
-\*\*完全サーバーレス構成\*\*を採用しています。
+CDK、CloudFront を中心に、静的コンテンツと API を分離した **サーバーレス構成** です。  
+インフラは IaC 化しており、変更を GitHub 起点で CI/CD により反映します。
 
 
 ---
@@ -52,15 +43,12 @@ CloudFront を中心に、静的コンテンツと API を分離した
 
 
 
-\- CloudFront + S3：静的サイト配信
-
-\- API Gateway + Lambda（Python）：動的処理
-
-\- SNS：問い合わせ内容の通知
-
-\- Route53 / ACM：独自ドメイン管理・HTTPS 化
-
-\- CloudFormation：全リソースを IaC 管理
+- CloudFront + S3：静的サイト配信
+- API Gateway + Lambda（Python）：問い合わせフォーム等の API
+- SNS：問い合わせ内容の通知
+- Route53 / ACM：独自ドメイン管理・HTTPS 化
+- IaC：CloudFormation / AWS CDK
+- CI/CD：GitHub → CodePipeline / CodeBuild → CloudFormation（スタック更新）
 
 
 ---
@@ -68,7 +56,7 @@ CloudFront を中心に、静的コンテンツと API を分離した
 
 \### 🏗️ アーキテクチャ構成図
 
-<img src="docs/architecture/serverless-architecture.png" style="width: 70%;">
+<img src="docs/architecture/cdk-serverless-architecture.png" style="width: 70%;">
 
 
 ---
@@ -78,11 +66,9 @@ CloudFront を中心に、静的コンテンツと API を分離した
 
 
 
-\- サーバーレス構成により運用負荷とコストを低減
-
-\- ビルド不要な構成とし、構成をシンプルに維持
-
-\- CloudFormation により再現性・保守性を重視
+- サーバーレス構成により運用負荷・コストを抑えつつスケーラブルに設計
+- IaC により再現性を確保し、変更容易性を重視
+- デプロイは差分を意識した運用（Change Set / Manual Approval）を想定
 
 
 ---
