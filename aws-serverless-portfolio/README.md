@@ -54,3 +54,32 @@ CDK/
         └─ route53.py
 ```
 
+## 🔄 CI/CD デプロイフロー
+
+本構成では、AWS CDK を用いたインフラ更新を
+以下の CI/CD フローで実施します。
+
+<img src="../docs/architecture/codepipeline-flow.png" width="80%">
+
+### 各ステージの役割
+
+- Source  
+  GitHub への push をトリガーにパイプラインを起動
+
+- Build  
+  CodeBuild にて `cdk synth` を実行し、
+  CloudFormation テンプレートを生成
+
+- Test  
+  pytest による CDK スタックのユニットテストを実行
+
+- Deploy（Change Set 作成）  
+  CloudFormation Change Set を作成し、差分を可視化
+
+- Manual Approval  
+  影響確認後、人手で承認
+
+- Deploy（Change Set 実行）  
+  承認後にスタックを更新
+
+
