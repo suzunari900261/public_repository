@@ -122,7 +122,7 @@ aws-serverless-portfolio/
 ```
 
 
-\## ② AWS IoT デモ（環境センサーデバイス模擬）
+\### ② AWS IoT デモ（環境センサーデバイス模擬）
 
 
 
