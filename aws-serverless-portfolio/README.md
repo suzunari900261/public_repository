@@ -74,7 +74,7 @@ CDK/
   pytest による CDK スタックのユニットテストを実行
 
 - Deploy（Change Set 作成）  
-  CloudFormation Change Set を作成し、差分を可視化
+  CloudFormation Change Set を作成
 
 - Manual Approval  
   人手で承認
